@@ -1,12 +1,12 @@
 import * as React from "react"
 import logo from "../images/bark.svg";
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import Layout from "../components/layout"
 
 // styles
 const pageStyles = {
   color: "#232129",
   backgroundColor: "#000000",
-  padding: 96,
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
 const headingStyles = {
@@ -29,6 +29,10 @@ const codeStyles = {
 const listStyles = {
   marginBottom: 96,
   paddingLeft: 0,
+  display: 'flex',
+  flexDirection: 'row',
+  //justifyContent: 'center',
+  alignItems: 'center'
 }
 const doclistStyles = {
   paddingLeft: 0,
@@ -36,15 +40,24 @@ const doclistStyles = {
 const listItemStyles = {
   fontWeight: 300,
   fontSize: 24,
-  maxWidth: 560,
+  //maxWidth: 560,
+  maxWidth: '20%',
   marginBottom: 30,
+  listStyleType: "none",
+  display: `inline-block`,
+  padding: '.5rem',
 }
 
 const linkStyle = {
-  color: "#8954A8",
+  color: "rgba(255, 255, 255, 0.85)",
   fontWeight: "bold",
   fontSize: 16,
+  textTransform: 'uppercase',
   verticalAlign: "5%",
+  textDecoration: 'none'
+}
+const linkImgStyle = {
+  maxWidth: '100%',
 }
 
 const docLinkStyle = {
@@ -72,8 +85,10 @@ const logoStyles = {
 const viewZoneStyles = {
   width: "100vw",
   height: "100vh",
+  //padding: 40,
   margin: 'auto',
-  display: 'block'
+  display: 'block',
+  fontSize: '3.5rem'
 }
 
 const docLinks = [
@@ -115,114 +130,128 @@ const links = [
   {
     text: "Wonderbai",
     url: "/wonderbai/",
-    description:
-      "Streamer på dansk",
-    image: "/images/talent/wonderbai.jpg",
+    image: "/talent/wonderbai.jpg",
+    name: "JENS SÆTTER-LASSEN"
   },
   {
     text: "agge",
     url: "/agge/",
-    description:
-      "agge",
-    image: "/images/talent/placeholder.jpg",
+    image: "/talent/placeholder.jpg",
   },
   {
     text: "BRIANFROMDENMARK",
     url: "/BRIANFROMDENMARK/",
-    description:
-      "BRIANFROMDENMARK",
-    image: "/images/talent/placeholder.jpg",
+
+    image: "/talent/placeholder.jpg",
 
   },,
   {
     text: "Zrool",
     url: "/Zrool/",
-    description:
-      "Zrool",
-    image: "/images/talent/placeholder.jpg",
+
+    image: "/talent/placeholder.jpg",
   },
   {
     text: "JK",
     url: "/JK/",
-    description:
-      "JK",
-    image: "/images/talent/placeholder.jpg",
-  },
-  {
-    text: "MINNA MUMI",
-    url: "/MINNAMUMI/",
-    description:
-      "MINNA MUMI",
-    image: "/images/talent/placeholder.jpg",
-    badge: true
+    image: "/talent/placeholder.jpg",
   },
 ]
 
 // markup
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
-      <title>Bark Agency</title>
-      
-      <section style={viewZoneStyles}>
-        <img style={logoStyles} src={logo} alt="Logo" />
-      </section>
+    <Layout>
+      <main style={pageStyles}>
+        <title>Bark Agency</title>
+        
+        <section style={{
+          ...viewZoneStyles,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <img style={logoStyles} src={logo} alt="Logo" />
+        </section>
 
-      <section style={{ ...viewZoneStyles, background: '#ffffff' }}>
-         <h1 style={headingStyles}>
-          Bark Agency giver dig en plads ved spisebordet hos præcist den målgruppe du gerne vil ramme.
-          Ved at have influencere der fastholder deres publikum i gennemsnit 45 minutter ad gangen, med muligheden for konstant eksponering og dialog om netop dit budskab eller dit produkt, sikrer vi jer muligheden for succes. 
-        </h1>
-      </section>
+        <section style={{ ...viewZoneStyles, background: '#ffffff' }}>
+          <ul style={doclistStyles}>
+            {docLinks.map(doc => (
+              <li style={docLinkStyle} key={doc.url}>
+                <a
+                  style={linkStyle}
+                  href={`${doc.url}?utm_source=starter&utm_medium=ts-docs&utm_campaign=minimal-starter-ts`}
+                >
+                  {doc.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <h1 style={headingStyles}>
+            Bark Agency giver dig en plads ved spisebordet hos præcist den målgruppe du gerne vil ramme.
+            Ved at have influencere der fastholder deres publikum i gennemsnit 45 minutter ad gangen, med muligheden for konstant eksponering og dialog om netop dit budskab eller dit produkt, sikrer vi jer muligheden for succes. 
+          </h1>
+        </section>
     
-      <ul style={doclistStyles}>
-        {docLinks.map(doc => (
-          <li style={docLinkStyle}>
-            <a
-              style={linkStyle}
-              href={`${doc.url}?utm_source=starter&utm_medium=ts-docs&utm_campaign=minimal-starter-ts`}
-            >
-              {doc.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <ul style={listStyles}>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}`}
-              >
-                <StaticImage src={link.image} alt={link.text}  />
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NY!
+        <section style={{
+          width: '70%',
+          margin: 'auto'
+        }}>
+          <ul style={listStyles}>
+            {links.map(link => (
+              <li key={link.url} style={{ ...listItemStyles }}>
+                <span>
+                  <a
+                    style={linkStyle}
+                    href={`#${link.url}`}
+                  >
+                    <img style={linkImgStyle}  src={link.image}  alt={link.text}/>
+                    {link.text}
+                  </a>
+                  {link.badge && (
+                    <span style={badgeStyle} aria-label="New Badge">
+                      NY!
+                    </span>
+                  )}
+                  
                 </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      <section style={{ ...viewZoneStyles, background: '#ffffff' }}>
-        <p>Bark Agency<br />
-        <a href="mailto:hello@barkagency.dk">hello@barkagency.dk</a><br />
-        <a href="tel:+45 684491XX">+45 684491XX</a>
-        <br /><br /></p>
-        <p>
-        CVR 386495XX<br />
-        Dageløkkevej 13<br />
-        Humlebæk, Danmark<br />
-        </p>
-      </section>
+        <section style={{ ...viewZoneStyles, background: '#ffffff' }}>
+        <section style={{
+          width: '70%',
+          margin: 'auto',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: '1.5rem',
+          height: '100%'
+        }}>
+          <div>
+            <p>Bark Agency<br />
+              <a style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.85)' }} href="mailto:hello@barkagency.dk">hello@barkagency.dk</a><br />
+              <a style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.85)' }} href="tel:+4522909399">+45 22 90 93 99</a>
+            </p>
+            <br />
+            <p>
+              CVR 43380273<br />
+              Vilhelmsro 670<br />
+              3480 Fredensborg, Danmark<br />
+            </p>
+          </div>
+  
+          </section>
+        </section>
 
-    </main>
+      </main>
+    </Layout>
   )
 }
 
