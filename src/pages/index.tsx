@@ -131,7 +131,8 @@ const links = [
     text: "Wonderbai",
     url: "/wonderbai/",
     image: "/talent/wonderbai.jpg",
-    name: "JENS SÆTTER-LASSEN"
+    name: "JENS SÆTTER-LASSEN",
+    stream: "https://twitch.tv/wonderbai"
   },
   {
     text: "agge",
@@ -144,7 +145,7 @@ const links = [
 
     image: "/talent/placeholder.jpg",
 
-  },,
+  },
   {
     text: "Zrool",
     url: "/Zrool/",
