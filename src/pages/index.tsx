@@ -133,29 +133,47 @@ const links = [
     image: "/talent/wonderbai.jpg",
     name: "JENS SÆTTER-LASSEN",
     stream: "https://twitch.tv/wonderbai"
+    instagram: "https://www.instagram.com/jenssaetterlassen/"
+    presskit: ""
   },
   {
     text: "agge",
     url: "/agge/",
     image: "/talent/placeholder.jpg",
+    name: "AGGE KAADT TRANDUM",
+    stream: "https://twitch.tv/agge"
+    instagram: "https://www.instagram.com/hakkeagge/"
+    presskit: ""
   },
   {
     text: "BRIANFROMDENMARK",
     url: "/BRIANFROMDENMARK/",
-
     image: "/talent/placeholder.jpg",
+    name: "BRIAN IKAST SØRENSEN",
+    stream: "https://twitch.tv/brianfromdenmark"
+    instagram: "https://www.instagram.com/brianowitsz/"
+    presskit: ""
 
   },
   {
     text: "Zrool",
     url: "/Zrool/",
-
     image: "/talent/placeholder.jpg",
+    name: "MIKKEL ULDAHL NIELSEN",
+    stream: "https://www.twitch.tv/zrool"
+    instagram: "https://www.instagram.com/therealzrool/"
+    youtube: "https://www.youtube.com/c/Zrool"
+    presskit: ""
   },
   {
     text: "JK",
     url: "/JK/",
     image: "/talent/placeholder.jpg",
+    name: "JAKOB KRISTENSEN",
+    stream: "https://www.twitch.tv/jkfifa"
+    instagram: "https://www.instagram.com/jakob_kristensen97/"
+    youtube: "https://www.youtube.com/c/JKFIFA/"
+    presskit: ""
   },
 ]
 
